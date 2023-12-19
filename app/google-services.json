@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "140960997475",
+    "project_id": "programmingengineering-1b876",
+    "storage_bucket": "programmingengineering-1b876.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:140960997475:android:407446b5ff66718bf55856",
+        "android_client_info": {
+          "package_name": "hr.programsko.programmingengineering"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBLRIYCjT_f7iaClMUNR7BLwhPFcR_HngM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
