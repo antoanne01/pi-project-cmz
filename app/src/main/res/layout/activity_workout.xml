@@ -1,18 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".WorkoutActivity">
 
+    <ImageView
+        android:id="@+id/imView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/workout_image"/>
+
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/txtView"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Workout page"
+        android:text="Enter your weight (kg)"
+        android:textSize="@dimen/_30sp"
+        android:gravity="center_horizontal"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txtLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtView"
+        android:layout_marginTop="16dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:textSize="@dimen/_30sp"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <TextView
+        android:id="@+id/txtViewHeight"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="How tall are you (cm)"
+        android:textSize="@dimen/_30sp"
+        android:gravity="center_horizontal"
+        android:textColor="@color/white"
+        android:layout_below="@id/txtLayout"
+        android:layout_marginTop="@dimen/_40sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txtLayoutHeight"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtViewHeight"
+        android:layout_marginTop="16dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:textSize="@dimen/_30sp"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/btnContinue"
+        android:layout_width="@dimen/_300dp"
+        android:layout_height="@dimen/_75dp"
+        android:layout_centerInParent="true"
+        android:text="Continue"
+        android:layout_marginTop="@dimen/_40sp"
+        android:layout_below="@id/txtLayoutHeight"/>
+
+</RelativeLayout>
