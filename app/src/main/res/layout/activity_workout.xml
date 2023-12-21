@@ -19,6 +19,7 @@
         android:text="Enter your weight (kg)"
         android:textSize="@dimen/_30sp"
         android:gravity="center_horizontal"
+        android:layout_marginTop="@dimen/_50dp"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -33,6 +34,7 @@
         android:layout_marginTop="16dp">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
@@ -63,6 +65,7 @@
         android:layout_marginTop="16dp">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtEditTextHeight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
