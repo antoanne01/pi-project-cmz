@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".SetWorkoutGoal">
 
     <ImageView
@@ -12,4 +13,46 @@
         android:layout_height="match_parent"
         android:background="@drawable/workout_goals"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/txtViewChoose"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Choose Your Goal"
+        android:textSize="@dimen/_50dp"
+        android:gravity="center_horizontal"
+        android:textColor="@color/white"
+        android:layout_marginTop="@dimen/_50dp"
+        android:fontFamily="cursive"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <Button
+        android:id="@+id/btnLoseWeight"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_75dp"
+        android:text="Weight Loss"
+        android:backgroundTint="#2E2C2C"
+        android:layout_below="@id/txtViewChoose"
+        android:layout_marginTop="@dimen/_50dp"/>
+
+    <Button
+        android:id="@+id/btnFitness"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_75dp"
+        android:layout_below="@id/btnLoseWeight"
+        android:text="Fitness"
+        android:backgroundTint="#2E2C2C"
+        android:layout_marginTop="@dimen/_40sp"/>
+
+    <Button
+        android:id="@+id/btnGainWeight"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_75dp"
+        android:layout_below="@id/btnFitness"
+        android:text="Gain Weight"
+        android:backgroundTint="#2E2C2C"
+        android:layout_marginTop="@dimen/_40sp"/>
+
+</RelativeLayout>
