@@ -11,6 +11,7 @@ class SignInActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySignInBinding
     private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var navigationHandler: NavigationHandler
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,9 +19,11 @@ class SignInActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         firebaseAuth = FirebaseAuth.getInstance()
+        navigationHandler = NavigationHandler(this)
         binding.textView.setOnClickListener {
-            val intent = Intent(this, SignUpActivity::class.java)
-            startActivity(intent)
+//            val intent = Intent(this, SignUpActivity::class.java)
+//            startActivity(intent)
+
         }
 
         binding.button.setOnClickListener {
@@ -49,8 +52,10 @@ class SignInActivity : AppCompatActivity() {
         super.onStart()
 
         if(firebaseAuth.currentUser != null){
-            val intent = Intent(this, WorkoutActivity::class.java)
-            startActivity(intent)
+//            val intent = Intent(this, WorkoutActivity::class.java)
+//            startActivity(intent)
+
+            navigationHandler.navigateTo(Screen.Workout)
         }
     }
 }

@@ -4,7 +4,11 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.ViewGroup
+import android.widget.Button
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import hr.programsko.programmingengineering.databinding.ActivitySetWorkoutGoalBinding
 import hr.programsko.programmingengineering.databinding.ActivityWeightLossBinding
 
 class WeightLossActivity : AppCompatActivity() {
@@ -218,42 +222,36 @@ class WeightLossActivity : AppCompatActivity() {
 
 
         binding.buttonMealDay1.setOnClickListener {
-            val intent = Intent(this, FatLossMealsActivity::class.java)
-            startActivity(intent)
+            startDailyMealsActivity()
         }
-//
-//
-//        binding.buttonMealDay1.setOnClickListener {
-//            startDailyMealsActivity()
-//        }
-//
-//        binding.buttonMealDay2.setOnClickListener {
-//            startDailyMealsActivity()
-//        }
-//
-//        binding.buttonMealDay3.setOnClickListener {
-//            startDailyMealsActivity()
-//        }
-//
-//        binding.buttonMealDay4.setOnClickListener {
-//            startDailyMealsActivity()
-//        }
-//
-//        binding.buttonMealDay5.setOnClickListener {
-//            startDailyMealsActivity()
-//        }
-//
-//        binding.buttonMealDay6.setOnClickListener {
-//            startDailyMealsActivity()
-//        }
-//
-//        binding.buttonMealDay7.setOnClickListener {
-//            startDailyMealsActivity()
-//        }
+
+        binding.buttonMealDay2.setOnClickListener {
+            startDailyMealsActivity()
+        }
+
+        binding.buttonMealDay3.setOnClickListener {
+            startDailyMealsActivity()
+        }
+
+        binding.buttonMealDay4.setOnClickListener {
+            startDailyMealsActivity()
+        }
+
+        binding.buttonMealDay5.setOnClickListener {
+            startDailyMealsActivity()
+        }
+
+        binding.buttonMealDay6.setOnClickListener {
+            startDailyMealsActivity()
+        }
+
+        binding.buttonMealDay7.setOnClickListener {
+            startDailyMealsActivity()
+        }
     }
 
-//    private fun startDailyMealsActivity() {
-//        val intent = Intent(this, FatLossMealsActivity::class.java)
-//        startActivity(intent)
-//    }
+    private fun startDailyMealsActivity() {
+        val intent = Intent(this, FatLossMealsActivity::class.java)
+        startActivity(intent)
+    }
 }
