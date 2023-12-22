@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".FatLossMealsActivity">
+
+<ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".FatLossMealsActivity">
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/imMealGoalView"
@@ -20,7 +26,11 @@
         android:textSize="@dimen/_50dp"
         android:gravity="center_horizontal"
         android:textColor="@color/white"
-        android:fontFamily="sans-serif-smallcaps"/>
+        android:fontFamily="sans-serif-smallcaps"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
         android:id="@+id/txtMealDayOne"
@@ -166,6 +176,204 @@
 
     </LinearLayout>
 
+    <!-- Day 4 -->
+
+    <TextView
+            android:id="@+id/txtMealDayFour"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Day 4:"
+            android:textSize="@dimen/_30dp"
+            android:textColor="@color/white"
+            android:layout_marginTop="@dimen/_40sp"
+            android:layout_below="@id/dayThreeMeals"/>
+
+    <LinearLayout
+            android:id="@+id/dayFourMeals"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/txtMealDayFour"
+            android:layout_marginTop="@dimen/_30dp">
+
+        <Button
+                android:id="@+id/btnMeal1Day4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:width="@dimen/_130dp"
+                android:height="@dimen/_75dp"
+                android:backgroundTint="#2E2C2C"
+        />
+
+        <Button
+                android:id="@+id/btnMeal2Day4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:width="@dimen/_130dp"
+                android:height="@dimen/_75dp"
+                android:layout_marginLeft="@dimen/_10dp"
+                android:backgroundTint="#2E2C2C"/>
+
+        <Button
+                android:id="@+id/btnMeal3Day4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:width="@dimen/_130dp"
+                android:height="@dimen/_75dp"
+                android:layout_marginLeft="@dimen/_10dp"
+                android:backgroundTint="#2E2C2C"/>
+
+    </LinearLayout>
+
+    <!-- Day 5 -->
+
+    <TextView
+            android:id="@+id/txtMealDayFive"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Day 5:"
+            android:textSize="@dimen/_30dp"
+            android:textColor="@color/white"
+            android:layout_marginTop="@dimen/_40sp"
+            android:layout_below="@id/dayFourMeals"/>
+
+    <LinearLayout
+            android:id="@+id/dayFiveMeals"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/txtMealDayFive"
+            android:layout_marginTop="@dimen/_30dp">
+
+        <Button
+                android:id="@+id/btnMeal1Day5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:width="@dimen/_130dp"
+                android:height="@dimen/_75dp"
+                android:backgroundTint="#2E2C2C"
+        />
+
+        <Button
+                android:id="@+id/btnMeal2Day5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:width="@dimen/_130dp"
+                android:height="@dimen/_75dp"
+                android:layout_marginLeft="@dimen/_10dp"
+                android:backgroundTint="#2E2C2C"/>
+
+        <Button
+                android:id="@+id/btnMeal3Day5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:width="@dimen/_130dp"
+                android:height="@dimen/_75dp"
+                android:layout_marginLeft="@dimen/_10dp"
+                android:backgroundTint="#2E2C2C"/>
+
+    </LinearLayout>
+
+    <!-- Day 6 -->
+
+    <TextView
+            android:id="@+id/txtMealDaySix"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Day 6:"
+            android:textSize="@dimen/_30dp"
+            android:textColor="@color/white"
+            android:layout_marginTop="@dimen/_40sp"
+            android:layout_below="@id/dayFiveMeals"/>
+
+    <LinearLayout
+            android:id="@+id/daySixMeals"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/txtMealDaySix"
+            android:layout_marginTop="@dimen/_30dp">
+
+        <Button
+                android:id="@+id/btnMeal1Day6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:width="@dimen/_130dp"
+                android:height="@dimen/_75dp"
+                android:backgroundTint="#2E2C2C"
+        />
+
+        <Button
+                android:id="@+id/btnMeal2Day6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:width="@dimen/_130dp"
+                android:height="@dimen/_75dp"
+                android:layout_marginLeft="@dimen/_10dp"
+                android:backgroundTint="#2E2C2C"/>
+
+        <Button
+                android:id="@+id/btnMeal3Day6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:width="@dimen/_130dp"
+                android:height="@dimen/_75dp"
+                android:layout_marginLeft="@dimen/_10dp"
+                android:backgroundTint="#2E2C2C"/>
+
+    </LinearLayout>
+
+    <!-- Day 7 -->
+
+    <TextView
+            android:id="@+id/txtMealDaySeven"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Day 7:"
+            android:textSize="@dimen/_30dp"
+            android:textColor="@color/white"
+            android:layout_marginTop="@dimen/_40sp"
+            android:layout_below="@id/daySixMeals"/>
+
+    <LinearLayout
+            android:id="@+id/daySevenMeals"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/txtMealDaySeven"
+            android:layout_marginTop="@dimen/_30dp">
+
+        <Button
+                android:id="@+id/btnMeal1Day7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:width="@dimen/_130dp"
+                android:height="@dimen/_75dp"
+                android:backgroundTint="#2E2C2C"
+        />
+
+        <Button
+                android:id="@+id/btnMeal2Day7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:width="@dimen/_130dp"
+                android:height="@dimen/_75dp"
+                android:layout_marginLeft="@dimen/_10dp"
+                android:backgroundTint="#2E2C2C"/>
+
+        <Button
+                android:id="@+id/btnMeal3Day7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:width="@dimen/_130dp"
+                android:height="@dimen/_75dp"
+                android:layout_marginLeft="@dimen/_10dp"
+                android:backgroundTint="#2E2C2C"/>
+
+    </LinearLayout>
+
 
 
 </RelativeLayout>
+
+</ScrollView>
