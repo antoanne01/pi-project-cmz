@@ -13,7 +13,7 @@
         android:theme="@style/Theme.ProgrammingEngineering"
         tools:targetApi="31">
         <activity
-            android:name=".DailyMealsActivity"
+            android:name=".FatLossMealsActivity"
             android:exported="false" />
         <activity
             android:name=".WeightLossActivity"
