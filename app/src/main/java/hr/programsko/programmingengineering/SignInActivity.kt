@@ -24,6 +24,7 @@ class SignInActivity : AppCompatActivity() {
 //            val intent = Intent(this, SignUpActivity::class.java)
 //            startActivity(intent)
 
+            navigationHandler.navigateTo(Screen.SignUp)
         }
 
         binding.button.setOnClickListener {
@@ -34,8 +35,9 @@ class SignInActivity : AppCompatActivity() {
 
                 firebaseAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener {
                     if (it.isSuccessful) {
-                        val intent = Intent(this, WorkoutActivity::class.java)
-                        startActivity(intent)
+//                        val intent = Intent(this, WorkoutActivity::class.java)
+//                        startActivity(intent)
+                        navigationHandler.navigateTo(Screen.Workout)
                     } else {
                         Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
 

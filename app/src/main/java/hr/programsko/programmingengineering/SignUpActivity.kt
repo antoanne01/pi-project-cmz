@@ -11,6 +11,7 @@ class SignUpActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySignUpBinding
     private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var navigationHandler: NavigationHandler
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,10 +19,12 @@ class SignUpActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         firebaseAuth = FirebaseAuth.getInstance()
+        navigationHandler = NavigationHandler(this)
 
         binding.textView.setOnClickListener {
-            val intent = Intent(this, SignInActivity::class.java)
-            startActivity(intent)
+//            val intent = Intent(this, SignInActivity::class.java)
+//            startActivity(intent)
+            navigationHandler.navigateTo(Screen.SignIn)
         }
 
         binding.button.setOnClickListener {
@@ -34,8 +37,9 @@ class SignUpActivity : AppCompatActivity() {
 
                     firebaseAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener {
                         if (it.isSuccessful) {
-                            val intent = Intent(this, SignInActivity::class.java)
-                            startActivity(intent)
+//                            val intent = Intent(this, SignInActivity::class.java)
+//                            startActivity(intent)
+                            navigationHandler.navigateTo(Screen.SignIn)
                         } else {
                             Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
 

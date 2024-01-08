@@ -14,6 +14,7 @@ import hr.programsko.programmingengineering.databinding.ActivitySetWorkoutGoalBi
 class SetWorkoutGoal : AppCompatActivity() {
 
     private lateinit var binding: ActivitySetWorkoutGoalBinding
+    private lateinit var navigationHandler: NavigationHandler
     private val db = FirebaseFirestore.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,9 +22,12 @@ class SetWorkoutGoal : AppCompatActivity() {
         binding = ActivitySetWorkoutGoalBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        navigationHandler = NavigationHandler(this)
+
         binding.btnLoseWeight.setOnClickListener {
-            val intent = Intent(this, WeightLossActivity::class.java)
-            startActivity(intent)
+//            val intent = Intent(this, WeightLossActivity::class.java)
+//            startActivity(intent)
+            navigationHandler.navigateTo(Screen.WeightLossActivity)
         }
 
     }

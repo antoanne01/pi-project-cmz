@@ -11,6 +11,8 @@ class NavigationHandler(private val context: Context) {
             is Screen.SignUp -> startActivity(SignUpActivity::class.java)
             is Screen.Workout -> startActivity(WorkoutActivity::class.java)
             is Screen.SignIn -> startActivity(SignInActivity::class.java)
+            is Screen.SetWorkoutGoal -> startActivity(SetWorkoutGoal::class.java)
+            is Screen.WeightLossActivity -> startActivity(WeightLossActivity::class.java)
         }
     }
 
