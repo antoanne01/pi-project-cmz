@@ -7,7 +7,7 @@ import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import hr.programsko.programmingengineering.databinding.ActivitySignUpBinding
 
-class SignUpActivity : AppCompatActivity() {
+class SignUpActivity : AppCompatActivity(), SigningView {
 
     private lateinit var binding: ActivitySignUpBinding
     private lateinit var firebaseAuth: FirebaseAuth
@@ -24,7 +24,7 @@ class SignUpActivity : AppCompatActivity() {
         binding.textView.setOnClickListener {
 //            val intent = Intent(this, SignInActivity::class.java)
 //            startActivity(intent)
-            navigationHandler.navigateTo(Screen.SignIn)
+            navigateToSignInScreen()
         }
 
         binding.button.setOnClickListener {
@@ -39,19 +39,28 @@ class SignUpActivity : AppCompatActivity() {
                         if (it.isSuccessful) {
 //                            val intent = Intent(this, SignInActivity::class.java)
 //                            startActivity(intent)
-                            navigationHandler.navigateTo(Screen.SignIn)
+                            navigateToSignInScreen()
                         } else {
-                            Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
-
+                            showErrorMessage(it.exception.toString())
+                            //Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
                         }
                     }
                 } else {
-                    Toast.makeText(this, "Password is not matching", Toast.LENGTH_SHORT).show()
+                    showErrorMessage("Password is not matching")
+                    //Toast.makeText(this, "Password is not matching", Toast.LENGTH_SHORT).show()
                 }
             } else {
-                Toast.makeText(this, "Empty Fields Are not Allowed !!", Toast.LENGTH_SHORT).show()
-
+                showErrorMessage("Empty Fields Are not Allowed !!")
+                //Toast.makeText(this, "Empty Fields Are not Allowed !!", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    override fun showErrorMessage(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun navigateToSignInScreen(){
+        navigationHandler.navigateTo(Screen.SignIn)
     }
 }

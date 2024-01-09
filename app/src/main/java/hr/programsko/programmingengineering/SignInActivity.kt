@@ -7,7 +7,7 @@ import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import hr.programsko.programmingengineering.databinding.ActivitySignInBinding
 
-class SignInActivity : AppCompatActivity() {
+class SignInActivity : AppCompatActivity(), SigningView {
 
     private lateinit var binding: ActivitySignInBinding
     private lateinit var firebaseAuth: FirebaseAuth
@@ -37,15 +37,15 @@ class SignInActivity : AppCompatActivity() {
                     if (it.isSuccessful) {
 //                        val intent = Intent(this, WorkoutActivity::class.java)
 //                        startActivity(intent)
-                        navigationHandler.navigateTo(Screen.Workout)
+                        navigateToWorkoutScreen()
                     } else {
-                        Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
-
+                        showErrorMessage(it.exception.toString())
+                        //Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
                     }
                 }
             } else {
-                Toast.makeText(this, "Empty Fields Are not Allowed !!", Toast.LENGTH_SHORT).show()
-
+                showErrorMessage("Empty Fields Are not Allowed !!")
+                //Toast.makeText(this, "Empty Fields Are not Allowed !!", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -59,5 +59,13 @@ class SignInActivity : AppCompatActivity() {
 
             navigationHandler.navigateTo(Screen.Workout)
         }
+    }
+
+    override fun showErrorMessage(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun navigateToWorkoutScreen(){
+        navigationHandler.navigateTo(Screen.Workout)
     }
 }

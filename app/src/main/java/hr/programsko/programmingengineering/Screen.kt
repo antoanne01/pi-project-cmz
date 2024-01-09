@@ -5,6 +5,5 @@ sealed class Screen(val route : String){
     object SignUp : Screen("sign_up_screen")
     object Workout : Screen("workout_screen")
     object SetWorkoutGoal : Screen("set_workout_goal")
-
     object WeightLossActivity : Screen("weight_loss_activity")
 }

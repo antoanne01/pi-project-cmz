@@ -6,12 +6,13 @@ import android.os.Bundle
 import android.util.Log
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import hr.programsko.programmingengineering.databinding.ActivitySetWorkoutGoalBinding
 import hr.programsko.programmingengineering.databinding.ActivityWeightLossBinding
 
-class WeightLossActivity : AppCompatActivity() {
+class WeightLossActivity : AppCompatActivity(){
 
     private lateinit var binding: ActivityWeightLossBinding
     private val db = FirebaseFirestore.getInstance()
@@ -254,4 +255,5 @@ class WeightLossActivity : AppCompatActivity() {
         val intent = Intent(this, FatLossMealsActivity::class.java)
         startActivity(intent)
     }
+
 }

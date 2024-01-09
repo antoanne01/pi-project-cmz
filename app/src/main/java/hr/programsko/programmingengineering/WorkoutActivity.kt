@@ -7,7 +7,7 @@ import android.widget.Toast
 import hr.programsko.programmingengineering.databinding.ActivitySignUpBinding
 import hr.programsko.programmingengineering.databinding.ActivityWorkoutBinding
 
-class WorkoutActivity : AppCompatActivity() {
+class WorkoutActivity : AppCompatActivity(), WorkoutView {
 
     private lateinit var binding: ActivityWorkoutBinding
     private lateinit var navigationHandler: NavigationHandler
@@ -25,11 +25,20 @@ class WorkoutActivity : AppCompatActivity() {
             if (weight.isNotEmpty() && height.isNotEmpty()) {
 //                val intent = Intent(this, SetWorkoutGoal::class.java)
 //                startActivity(intent)
-                navigationHandler.navigateTo(Screen.SetWorkoutGoal)
+                startSetWorkoutScreen()
             } else {
-                Toast.makeText(this, "Both weight and height fields must be filled in.", Toast.LENGTH_SHORT).show()
+                showErrorMessage("Both weight and height fields must be filled.")
+                //Toast.makeText(this, "Both weight and height fields must be filled in.", Toast.LENGTH_SHORT).show()
             }
         }
 
+    }
+
+    override fun showErrorMessage(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun startSetWorkoutScreen() {
+        navigationHandler.navigateTo(Screen.SetWorkoutGoal)
     }
 }
