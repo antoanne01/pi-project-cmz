@@ -15,11 +15,14 @@ import hr.programsko.programmingengineering.databinding.ActivityWeightLossBindin
 class WeightLossActivity : AppCompatActivity(){
 
     private lateinit var binding: ActivityWeightLossBinding
+    private lateinit var navigationHandler: NavigationHandler
     private val db = FirebaseFirestore.getInstance()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityWeightLossBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        navigationHandler = NavigationHandler(this)
+
 
         // Cardio Workout bellow
         // Day 1
@@ -221,39 +224,22 @@ class WeightLossActivity : AppCompatActivity(){
                 }
             }
 
+        binding.buttonMealDay1.setOnClickListener { startDailyMealsActivity() }
 
-        binding.buttonMealDay1.setOnClickListener {
-            startDailyMealsActivity()
-        }
+        binding.buttonMealDay2.setOnClickListener { startDailyMealsActivity() }
 
-        binding.buttonMealDay2.setOnClickListener {
-            startDailyMealsActivity()
-        }
+        binding.buttonMealDay3.setOnClickListener { startDailyMealsActivity() }
 
-        binding.buttonMealDay3.setOnClickListener {
-            startDailyMealsActivity()
-        }
+        binding.buttonMealDay4.setOnClickListener { startDailyMealsActivity() }
 
-        binding.buttonMealDay4.setOnClickListener {
-            startDailyMealsActivity()
-        }
+        binding.buttonMealDay5.setOnClickListener { startDailyMealsActivity() }
 
-        binding.buttonMealDay5.setOnClickListener {
-            startDailyMealsActivity()
-        }
+        binding.buttonMealDay6.setOnClickListener { startDailyMealsActivity() }
 
-        binding.buttonMealDay6.setOnClickListener {
-            startDailyMealsActivity()
-        }
-
-        binding.buttonMealDay7.setOnClickListener {
-            startDailyMealsActivity()
-        }
+        binding.buttonMealDay7.setOnClickListener { startDailyMealsActivity() }
     }
 
     private fun startDailyMealsActivity() {
-        val intent = Intent(this, FatLossMealsActivity::class.java)
-        startActivity(intent)
+        navigationHandler.navigateTo(Screen.FatLossMealsActivity)
     }
-
 }
