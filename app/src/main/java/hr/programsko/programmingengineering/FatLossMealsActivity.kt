@@ -86,6 +86,4 @@ class FatLossMealsActivity : AppCompatActivity() {
             else -> throw IllegalArgumentException("Invalid day: $day")
         }
     }
-
-
 }

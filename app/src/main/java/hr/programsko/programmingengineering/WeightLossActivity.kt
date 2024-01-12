@@ -12,7 +12,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import hr.programsko.programmingengineering.databinding.ActivitySetWorkoutGoalBinding
 import hr.programsko.programmingengineering.databinding.ActivityWeightLossBinding
 
-class WeightLossActivity : AppCompatActivity(){
+class WeightLossActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityWeightLossBinding
     private lateinit var navigationHandler: NavigationHandler
@@ -24,9 +24,11 @@ class WeightLossActivity : AppCompatActivity(){
         navigationHandler = NavigationHandler(this)
 
         for (day in 1..7) {
-            setWorkout("CardioWorkout", binding.button1)
+            setWorkout("UpperBodyWorkout", binding.btnButton1Day(day))
+            setWorkout("LowerBodyWorkout", binding.btnButton2Day(day))
+            setWorkout("CardioWorkout", binding.btnButton3Day(day))
         }
-
+        /*
         // Cardio Workout bellow
         // Day 1
         db.collection("CardioWorkout")
@@ -227,6 +229,8 @@ class WeightLossActivity : AppCompatActivity(){
                 }
             }
 
+            */
+
 
 
         binding.buttonMealDay1.setOnClickListener { startDailyMealsActivity() }
@@ -244,12 +248,14 @@ class WeightLossActivity : AppCompatActivity(){
         binding.buttonMealDay7.setOnClickListener { startDailyMealsActivity() }
 
 
+
+
     }
 
-    private fun setWorkout(colleciton: String, button: Button) {
+    private fun setWorkout(collection: String, button: Button) {
         val specificRandomValue = (1..3).random()
 
-        db.collection(colleciton)
+        db.collection(collection)
             .whereGreaterThanOrEqualTo("Random", specificRandomValue)
             .orderBy("Random")
             .limit(1)
@@ -267,6 +273,45 @@ class WeightLossActivity : AppCompatActivity(){
                     Log.d("Error while fetching data", task.exception.toString())
                 }
             }
+    }
+
+    private fun ActivityWeightLossBinding.btnButton1Day(day: Int): Button {
+        return when (day) {
+            1 -> button1DayOne
+            2 -> button1DayTwo
+            3 -> button1DayThree
+            4 -> button1DayFour
+            5 -> button1DayFive
+            6 -> button1DaySix
+            7 -> button1DaySeven
+            else -> throw IllegalArgumentException("Invalid day: $day")
+        }
+    }
+
+    private fun ActivityWeightLossBinding.btnButton2Day(day: Int): Button {
+        return when (day) {
+            1 -> button2DayOne
+            2 -> button2DayTwo
+            3 -> button2DayThree
+            4 -> button2DayFour
+            5 -> button2DayFive
+            6 -> button2DaySix
+            7 -> button2DaySeven
+            else -> throw IllegalArgumentException("Invalid day: $day")
+        }
+    }
+
+    private fun ActivityWeightLossBinding.btnButton3Day(day: Int): Button {
+        return when (day) {
+            1 -> button3DayOne
+            2 -> button3DayTwo
+            3 -> button3DayThree
+            4 -> button3DayFour
+            5 -> button3DayFive
+            6 -> button3DaySix
+            7 -> button3DaySeven
+            else -> throw IllegalArgumentException("Invalid day: $day")
+        }
     }
 
     private fun startDailyMealsActivity() {
