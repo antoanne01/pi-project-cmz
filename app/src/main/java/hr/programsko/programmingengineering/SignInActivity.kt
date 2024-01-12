@@ -1,6 +1,5 @@
 package hr.programsko.programmingengineering
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -10,7 +9,7 @@ import hr.programsko.programmingengineering.databinding.ActivitySignInBinding
 class SignInActivity : AppCompatActivity(), SigningView {
 
     private lateinit var binding: ActivitySignInBinding
-    private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var firebaseAuthentification: SignInFirebaseAuthentificationInterface
     private lateinit var navigationHandler: NavigationHandler
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,34 +17,28 @@ class SignInActivity : AppCompatActivity(), SigningView {
         binding = ActivitySignInBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        firebaseAuth = FirebaseAuth.getInstance()
+        firebaseAuthentification = SignInFirebaseAuthentification(FirebaseAuth.getInstance())
         navigationHandler = NavigationHandler(this)
         binding.textView.setOnClickListener {
-//            val intent = Intent(this, SignUpActivity::class.java)
-//            startActivity(intent)
 
             navigationHandler.navigateTo(Screen.SignUp)
         }
 
         binding.button.setOnClickListener {
-            val email = binding.emailEt.text.toString()
+            val email = binding.emailEt.text.toString().trim()
             val pass = binding.passET.text.toString()
 
             if (email.isNotEmpty() && pass.isNotEmpty()) {
-
-                firebaseAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener {
-                    if (it.isSuccessful) {
-//                        val intent = Intent(this, WorkoutActivity::class.java)
-//                        startActivity(intent)
+                firebaseAuthentification.signInWithEmailAndPassword(email, pass).addOnCompleteListener {
+                    if(it.isSuccessful){
                         navigateToWorkoutScreen()
-                    } else {
-                        showErrorMessage(it.exception.toString())
-                        //Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
+                    }
+                    else{
+                        showErrorMessage("Error occurred, try again")
                     }
                 }
             } else {
                 showErrorMessage("Empty Fields Are not Allowed !!")
-                //Toast.makeText(this, "Empty Fields Are not Allowed !!", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -53,10 +46,7 @@ class SignInActivity : AppCompatActivity(), SigningView {
     override fun onStart() {
         super.onStart()
 
-        if(firebaseAuth.currentUser != null){
-//            val intent = Intent(this, WorkoutActivity::class.java)
-//            startActivity(intent)
-
+        if(firebaseAuthentification.currentUser() != null){
             navigationHandler.navigateTo(Screen.Workout)
         }
     }
