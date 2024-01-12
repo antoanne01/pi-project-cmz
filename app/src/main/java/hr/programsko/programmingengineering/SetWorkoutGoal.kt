@@ -25,8 +25,8 @@ class SetWorkoutGoal : AppCompatActivity() {
         navigationHandler = NavigationHandler(this)
 
         binding.btnLoseWeight.setOnClickListener {
-//            val intent = Intent(this, WeightLossActivity::class.java)
-//            startActivity(intent)
+            val intent = Intent(this, WeightLossActivity::class.java)
+            startActivity(intent)
 
             navigateToWeightLossActivity()
         }

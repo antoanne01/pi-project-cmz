@@ -23,6 +23,9 @@ class WeightLossActivity : AppCompatActivity(){
         setContentView(binding.root)
         navigationHandler = NavigationHandler(this)
 
+        for (day in 1..7) {
+            setWorkout("CardioWorkout", binding.button1)
+        }
 
         // Cardio Workout bellow
         // Day 1
@@ -175,9 +178,9 @@ class WeightLossActivity : AppCompatActivity(){
                 if (task.isSuccessful) {
                     for (document in task.result!!) {
                         // Access the data from each document
-                        val workoutFirst = document.getString("Calf")
-                        val workoutSecond = document.getString("Lunge")
-                        val workoutThird = document.getString("Squats")
+                        val workoutFirst = document.getString("Legs")
+                        val workoutSecond = document.getString("Squats")
+                        val workoutThird = document.getString("Deadlift")
 
 
                         if(workoutFirst != null){
@@ -224,6 +227,8 @@ class WeightLossActivity : AppCompatActivity(){
                 }
             }
 
+
+
         binding.buttonMealDay1.setOnClickListener { startDailyMealsActivity() }
 
         binding.buttonMealDay2.setOnClickListener { startDailyMealsActivity() }
@@ -237,6 +242,31 @@ class WeightLossActivity : AppCompatActivity(){
         binding.buttonMealDay6.setOnClickListener { startDailyMealsActivity() }
 
         binding.buttonMealDay7.setOnClickListener { startDailyMealsActivity() }
+
+
+    }
+
+    private fun setWorkout(colleciton: String, button: Button) {
+        val specificRandomValue = (1..3).random()
+
+        db.collection(colleciton)
+            .whereGreaterThanOrEqualTo("Random", specificRandomValue)
+            .orderBy("Random")
+            .limit(1)
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    for (document in task.result!!) {
+                        var workout = document.getString("Name")
+
+                        if (workout != null) {
+                            button.text = workout
+                        }
+                    }
+                } else {
+                    Log.d("Error while fetching data", task.exception.toString())
+                }
+            }
     }
 
     private fun startDailyMealsActivity() {
