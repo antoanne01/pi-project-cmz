@@ -8,6 +8,17 @@ import com.google.firebase.auth.FirebaseUser
 class SignInFirebaseAuthentification(private val firebaseAuth: FirebaseAuth)
     : SignInFirebaseAuthentificationInterface{
 
+    companion object {
+        private var instance: SignInFirebaseAuthentification? = null
+
+        fun getInstance(firebaseAuth: FirebaseAuth): SignInFirebaseAuthentification {
+            if (instance == null) {
+                instance = SignInFirebaseAuthentification(firebaseAuth)
+            }
+            return instance!!
+        }
+    }
+
     override fun signInWithEmailAndPassword(email: String, pass: String): Task<AuthResult> {
         return firebaseAuth.signInWithEmailAndPassword(email, pass)
     }

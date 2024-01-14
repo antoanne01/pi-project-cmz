@@ -11,8 +11,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import hr.programsko.programmingengineering.databinding.ActivitySetWorkoutGoalBinding
 import hr.programsko.programmingengineering.databinding.ActivityWeightLossBinding
+import kotlin.random.Random
 
-class WeightLossActivity : AppCompatActivity() {
+class WeightLossActivity : AppCompatActivity(){
 
     private lateinit var binding: ActivityWeightLossBinding
     private lateinit var navigationHandler: NavigationHandler
@@ -45,26 +46,49 @@ class WeightLossActivity : AppCompatActivity() {
     }
 
     private fun setWorkout(collection: String, button: Button) {
+//        val specificRandomValue = (1..3).random()
+//
+//        db.collection(collection)
+//            .whereGreaterThanOrEqualTo("Random", specificRandomValue)
+//            .orderBy("Random")
+//            .limit(1)
+//            .get()
+//            .addOnCompleteListener { task ->
+//                if (task.isSuccessful) {
+//                    for (document in task.result!!) {
+//                        var workout = document.getString("Name")
+//
+//                        if (workout != null) {
+//                            button.text = workout
+//                        }
+//                    }
+//                } else {
+//                    Log.d("Error while fetching data", task.exception.toString())
+//                }
+//            }
+
         val specificRandomValue = (1..3).random()
+        val workout = WorkoutFactory.createWorkout(collection)
 
         db.collection(collection)
             .whereGreaterThanOrEqualTo("Random", specificRandomValue)
             .orderBy("Random")
             .limit(1)
             .get()
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    for (document in task.result!!) {
-                        var workout = document.getString("Name")
-
-                        if (workout != null) {
-                            button.text = workout
+            .addOnCompleteListener {task ->
+                if(task.isSuccessful){
+                    for(document in task.result!!){
+                        val workoutName = workout?.getWorkoutName()
+                        if(workoutName != null){
+                            button.text = workoutName
                         }
                     }
-                } else {
-                    Log.d("Error while fetching data", task.exception.toString())
+                }
+                else{
+                    Toast.makeText(this, "Error while fetching data", Toast.LENGTH_SHORT).show()
                 }
             }
+
     }
 
     private fun ActivityWeightLossBinding.btnButton1Day(day: Int): Button {

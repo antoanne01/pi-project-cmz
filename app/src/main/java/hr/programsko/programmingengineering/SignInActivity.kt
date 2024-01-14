@@ -9,15 +9,16 @@ import hr.programsko.programmingengineering.databinding.ActivitySignInBinding
 class SignInActivity : AppCompatActivity(), SigningView {
 
     private lateinit var binding: ActivitySignInBinding
-    private lateinit var firebaseAuthentification: SignInFirebaseAuthentificationInterface
-    private lateinit var navigationHandler: NavigationHandler
+    lateinit var firebaseAuthentification: SignInFirebaseAuthentificationInterface
+    lateinit var navigationHandler: NavigationHandler
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySignInBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        firebaseAuthentification = SignInFirebaseAuthentification(FirebaseAuth.getInstance())
+        //firebaseAuthentification = SignInFirebaseAuthentification(FirebaseAuth.getInstance())
+        firebaseAuthentification = SignInFirebaseAuthentification.getInstance(FirebaseAuth.getInstance())
         navigationHandler = NavigationHandler(this)
         binding.textView.setOnClickListener {
 
