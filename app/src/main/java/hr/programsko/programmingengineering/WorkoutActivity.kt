@@ -23,12 +23,9 @@ class WorkoutActivity : AppCompatActivity(), WorkoutView {
             val height = binding.txtEditTextHeight.text.toString()
 
             if (weight.isNotEmpty() && height.isNotEmpty()) {
-//                val intent = Intent(this, SetWorkoutGoal::class.java)
-//                startActivity(intent)
                 startSetWorkoutScreen()
             } else {
                 showErrorMessage("Both weight and height fields must be filled.")
-                //Toast.makeText(this, "Both weight and height fields must be filled in.", Toast.LENGTH_SHORT).show()
             }
         }
 

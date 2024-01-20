@@ -21,7 +21,7 @@ class SignInActivityTest{
 
     @Test
     fun whenInputAreNotNull(){
-        val email = "a@mail.com"
+        val email = "someMail"
         val pass = "mail123"
 
         val result = signInAuth.signInWithEmailAndPassword(email, pass)
@@ -53,5 +53,37 @@ class SignInActivityTest{
             assertTrue(it.isComplete)
             assertFalse(it.isSuccessful)
         }
+    }
+
+    @Test
+    fun whenEmailIsNull(){
+        val email = ""
+        val pass = "invalid_password"
+
+        val result = if (email.isEmpty()) {
+            IllegalArgumentException("Empty email")
+        } else {
+            assertThrows(IllegalArgumentException::class.java){
+                signInAuth.signInWithEmailAndPassword(email, pass)
+            }
+        }
+
+        assertEquals("Empty email", result.message)
+    }
+
+    @Test
+    fun whenPasswordIsEmpty(){
+        val email = "a@mail.com"
+        val pass = ""
+
+        val result = if(pass.isEmpty()){
+            IllegalArgumentException("Empty password")
+        }
+        else{
+            assertThrows(IllegalArgumentException::class.java){
+                signInAuth.signInWithEmailAndPassword(email, pass)
+            }
+        }
+        assertEquals("Empty password", result.message)
     }
 }

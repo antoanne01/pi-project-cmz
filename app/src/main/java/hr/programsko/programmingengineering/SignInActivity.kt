@@ -44,7 +44,7 @@ class SignInActivity : AppCompatActivity(), SigningView {
         }
     }
 
-    override fun onStart() {
+    public override fun onStart() {
         super.onStart()
 
         if(firebaseAuthentification.currentUser() != null){
