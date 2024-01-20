@@ -46,26 +46,6 @@ class WeightLossActivity : AppCompatActivity(){
     }
 
     private fun setWorkout(collection: String, button: Button) {
-//        val specificRandomValue = (1..3).random()
-//
-//        db.collection(collection)
-//            .whereGreaterThanOrEqualTo("Random", specificRandomValue)
-//            .orderBy("Random")
-//            .limit(1)
-//            .get()
-//            .addOnCompleteListener { task ->
-//                if (task.isSuccessful) {
-//                    for (document in task.result!!) {
-//                        var workout = document.getString("Name")
-//
-//                        if (workout != null) {
-//                            button.text = workout
-//                        }
-//                    }
-//                } else {
-//                    Log.d("Error while fetching data", task.exception.toString())
-//                }
-//            }
 
         val specificRandomValue = (1..3).random()
         val workout = WorkoutFactory.createWorkout(collection)
