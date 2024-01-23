@@ -1,8 +1,6 @@
 package hr.programsko.programmingengineering
 
-import android.content.Context
 import androidx.test.core.app.ActivityScenario
-import androidx.test.core.app.ApplicationProvider
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
@@ -33,15 +31,59 @@ class WorkoutActivityTest{
     }
 
     @Test
-    fun whenWeightInputIsNotValid(){
+    fun whenWeightInputIsEmpty(){
 
-        val weight = ""
+        val weight: String? = ""
+        val height = "190"
+
+
+        scenario.onActivity { activity ->
+            val validationTask = activity.checkInputValidation(weight, height)
+
+            assertFalse(validationTask.isSuccessful)
+            assertTrue(validationTask.exception is IllegalArgumentException)
+        }
+    }
+
+    @Test
+    fun whenHeightInputIsEmpty(){
+
+        val weight = "90"
+        val height : String? = ""
+
+        scenario.onActivity {activity ->
+            val validationTask = activity.checkInputValidation(weight, height)
+
+            assertFalse(validationTask.isSuccessful)
+            assertTrue(validationTask.exception is IllegalArgumentException)
+        }
+    }
+
+    @Test
+    fun whenHeightInputIsNull(){
+
+        val weight = "90"
+        val height : String? = null
+
+        scenario.onActivity {activity ->
+            val validationTask = activity.checkInputValidation(weight, height)
+
+            assertFalse(validationTask.isSuccessful)
+            assertTrue(validationTask.exception is IllegalArgumentException)
+        }
+    }
+
+    @Test
+    fun whenWeightInputIsNull(){
+
+        val weight : String? = null
         val height = "190"
 
         scenario.onActivity {activity ->
-            activity.checkInputValidation(weight, height)
+            val validationTask = activity.checkInputValidation(weight, height)
 
-            assertNotNull(activity)
+            assertFalse(validationTask.isSuccessful)
+            assertTrue(validationTask.exception is IllegalArgumentException)
         }
     }
 }
