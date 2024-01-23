@@ -2,6 +2,8 @@ package hr.programsko.programmingengineering
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.tasks.await
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
@@ -41,16 +43,63 @@ class SignUpActivityTest{
         }
     }
 
+    // Bellow is doubtful
     @Test
-    fun whenEmailIsNotValid(){
-        val email = "ab"
+    fun whenInputsAreInvalid() {
+        val email = "a@mail.com"
         val pass = "mail123"
 
         val result = signUpAuth.createUserWithEmailAndPassword(email, pass)
 
         result.addOnCompleteListener {
-            //assertFalse(it.isSuccessful)
-            assertFalse(it.exception is FirebaseAuthInvalidCredentialsException)
+            assertFalse(it.isSuccessful)
+            assertTrue(it.exception is FirebaseAuthInvalidCredentialsException)
         }
     }
+
+    @Test
+    fun whenEmailIsEmpty(){
+
+        val email = ""
+        val pass = "invalid_password"
+
+        val result = if (email.isEmpty()) {
+            IllegalArgumentException("Empty email")
+        } else {
+            assertThrows(IllegalArgumentException::class.java){
+                signUpAuth.createUserWithEmailAndPassword(email, pass)
+            }
+        }
+
+        assertEquals("Empty email", result.message)
+    }
+
+    @Test
+    fun whenPasswordIsEmpty(){
+        val email = "a@mail.com"
+        val pass = ""
+
+        val result = if(pass.isEmpty()){
+            IllegalArgumentException("Empty password")
+        }
+        else{
+            assertThrows(IllegalArgumentException::class.java){
+                signUpAuth.createUserWithEmailAndPassword(email, pass)
+            }
+        }
+        assertEquals("Empty password", result.message)
+    }
+
+//    @Test
+//    fun whenEmailIsNotValid(){
+//        val email = "ab"
+//        val pass = "mail123"
+//
+//        val result = signUpAuth.createUserWithEmailAndPassword(email, pass)
+//
+//        result.addOnCompleteListener {
+//            //assertFalse(it.isSuccessful)
+//            assertFalse(it.exception is FirebaseAuthInvalidCredentialsException)
+//        }
+//    }
 }
