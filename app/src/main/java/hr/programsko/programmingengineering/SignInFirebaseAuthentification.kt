@@ -11,12 +11,8 @@ class SignInFirebaseAuthentification(private val firebaseAuth: FirebaseAuth)
     companion object {
         private var instance: SignInFirebaseAuthentification? = null
 
-        fun getInstance(firebaseAuth: FirebaseAuth): SignInFirebaseAuthentification {
-            if (instance == null) {
-                instance = SignInFirebaseAuthentification(firebaseAuth)
-            }
-            return instance!!
-        }
+        fun getInstance(firebaseAuth: FirebaseAuth): SignInFirebaseAuthentification
+            = instance ?: SignInFirebaseAuthentification(firebaseAuth).also {instance = it}
     }
 
     override fun signInWithEmailAndPassword(email: String, pass: String): Task<AuthResult> {
