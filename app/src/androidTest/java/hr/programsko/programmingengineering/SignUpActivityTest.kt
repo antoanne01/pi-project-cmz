@@ -1,5 +1,6 @@
 package hr.programsko.programmingengineering
 
+import com.google.android.gms.tasks.Tasks
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import kotlinx.coroutines.runBlocking
@@ -90,16 +91,22 @@ class SignUpActivityTest{
         assertEquals("Empty password", result.message)
     }
 
+
+    // bellow test is following given-when-then which above one do not folllows
+
+//
 //    @Test
-//    fun whenEmailIsNotValid(){
-//        val email = "ab"
-//        val pass = "mail123"
+//    fun whenPasswordIsEmpty() {
+//        // Given
+//        val email = "a@mail.com"
+//        val pass = ""
 //
-//        val result = signUpAuth.createUserWithEmailAndPassword(email, pass)
-//
-//        result.addOnCompleteListener {
-//            //assertFalse(it.isSuccessful)
-//            assertFalse(it.exception is FirebaseAuthInvalidCredentialsException)
+//        // When
+//        val exception = assertThrows(IllegalArgumentException::class.java) {
+//            signUpAuth.createUserWithEmailAndPassword(email, pass)
 //        }
+//
+//        // Then
+//        assertEquals("Empty password", exception.message)
 //    }
 }
