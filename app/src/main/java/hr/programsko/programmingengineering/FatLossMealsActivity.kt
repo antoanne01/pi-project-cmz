@@ -1,12 +1,11 @@
 package hr.programsko.programmingengineering
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.firestore.FirebaseFirestore
 import hr.programsko.programmingengineering.databinding.ActivityFatLossMealsBinding
-import kotlin.random.Random
 
 class FatLossMealsActivity : AppCompatActivity() {
 
@@ -21,13 +20,13 @@ class FatLossMealsActivity : AppCompatActivity() {
         val mealButtonBuilder = FatLossMealButtonBuilder(binding)
 
         for (day in 1..7) {
-            val breakfastButton = mealButtonBuilder.buildBreakfastButton(day)
+            val breakfastButton = mealButtonBuilder.build(1, day)
             setMeal("FatLossBreakfast", breakfastButton)
 
-            val lunchButton = mealButtonBuilder.buildLunchButton(day)
+            val lunchButton = mealButtonBuilder.build(2, day)
             setMeal("FatLossLunch", lunchButton)
 
-            val dinnerButton = mealButtonBuilder.buildDinnerButton(day)
+            val dinnerButton = mealButtonBuilder.build(3, day)
             setMeal("FatLossDinner", dinnerButton)
         }
     }
