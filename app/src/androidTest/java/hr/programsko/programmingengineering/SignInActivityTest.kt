@@ -1,5 +1,10 @@
 package hr.programsko.programmingengineering
 
+import androidx.test.core.app.ActivityScenario
+import androidx.test.espresso.Espresso
+import androidx.test.espresso.action.ViewActions
+import androidx.test.espresso.assertion.ViewAssertions
+import androidx.test.espresso.matcher.ViewMatchers
 import com.google.firebase.auth.FirebaseAuth
 import org.junit.Assert.*
 import org.junit.Before
@@ -46,7 +51,6 @@ class SignInActivityTest{
         }
     }
 
-    // Bellow is doubtful
     @Test
     fun whenInputsAreInvalid() {
         val email = "mail"
@@ -91,5 +95,26 @@ class SignInActivityTest{
             }
         }
         assertEquals("Empty password", result.message)
+    }
+
+    @Test
+    fun testUIElementsExistence() {
+        val scenario = ActivityScenario.launch(SignInActivity::class.java)
+
+        Espresso.onView(ViewMatchers.withId(R.id.emailEt)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+        Espresso.onView(ViewMatchers.withId(R.id.passET)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+        Espresso.onView(ViewMatchers.withId(R.id.textView)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+        Espresso.onView(ViewMatchers.withId(R.id.button)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+
+        scenario.close()
+    }
+
+    @Test
+    fun testButtonClick() {
+        val scenario = ActivityScenario.launch(SignInActivity::class.java)
+
+        Espresso.onView(ViewMatchers.withId(R.id.button)).perform(ViewActions.click())
+
+        scenario.close()
     }
 }
