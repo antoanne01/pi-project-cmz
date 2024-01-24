@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.google.android.gms.tasks.Task
+import com.google.android.gms.tasks.TaskCompletionSource
 import com.google.android.gms.tasks.Tasks
 import hr.programsko.programmingengineering.databinding.ActivityWorkoutBinding
 
@@ -31,21 +32,36 @@ class WorkoutActivity : AppCompatActivity(), WorkoutView {
 
         binding.btnContinue.setOnClickListener {
 
-            val weight = binding.txtEditText.text.toString()
-            val height = binding.txtEditTextHeight.text.toString()
+            val weight: String? = binding.txtEditText.text.toString()
+            val height: String? = binding.txtEditTextHeight.text.toString()
 
-            checkInputValidation(weight, height)
+            //checkInputValidation(weight, height)
+
+
+            val validationTask = checkInputValidation(weight, height)
+            validationTask.addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    startSetWorkoutScreen()
+                } else {
+                    showErrorMessage(task.exception?.message ?: "Unexpected error")
+                }
+            }
         }
 
     }
 
-    fun checkInputValidation(weight: String, height: String){
-        if(weight.isNotEmpty() && height.isNotEmpty()){
-            startSetWorkoutScreen()
+    fun checkInputValidation(weight: String?, height: String?) : Task<Void>{
+
+        val completionSource = TaskCompletionSource<Void>()
+
+        if (weight != null && height != null && weight.isNotEmpty() && height.isNotEmpty()) {
+            completionSource.setResult(null)
+        } else {
+            completionSource.setException(IllegalArgumentException("Both weight and height fields must be filled."))
         }
-        else{
-            showErrorMessage("Both weight and height fields must be filled.")
-        }
+
+        return completionSource.task
+
     }
 
     override fun showErrorMessage(message: String) {

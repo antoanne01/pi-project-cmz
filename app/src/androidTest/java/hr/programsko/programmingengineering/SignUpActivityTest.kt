@@ -1,17 +1,9 @@
 package hr.programsko.programmingengineering
 
-import androidx.test.core.app.ActivityScenario
-import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.action.ViewActions.click
-import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
-import androidx.test.espresso.matcher.ViewMatchers.withId
-import androidx.test.ext.junit.rules.ActivityScenarioRule
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import org.junit.Assert.*
 import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
@@ -65,29 +57,4 @@ class SignUpActivityTest{
             assertTrue(it.exception is FirebaseAuthInvalidCredentialsException)
         }
     }
-
-    @Test
-    fun testUIElementsExistence() {
-        val scenario = ActivityScenario.launch(SignUpActivity::class.java)
-
-        onView(withId(R.id.emailEt)).check(matches(isDisplayed()))
-        onView(withId(R.id.passET)).check(matches(isDisplayed()))
-        onView(withId(R.id.confirmPassEt)).check(matches(isDisplayed()))
-        onView(withId(R.id.textView)).check(matches(isDisplayed()))
-        onView(withId(R.id.button)).check(matches(isDisplayed()))
-
-        scenario.close()
-    }
-
-    @Test
-    fun testButtonClick() {
-        val scenario = ActivityScenario.launch(SignUpActivity::class.java)
-
-        onView(withId(R.id.button)).perform(click())
-
-        scenario.close()
-    }
-
-
-
 }

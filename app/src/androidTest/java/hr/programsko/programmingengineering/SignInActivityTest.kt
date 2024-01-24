@@ -26,7 +26,10 @@ class SignInActivityTest{
 
         val result = signInAuth.signInWithEmailAndPassword(email, pass)
 
-        assertNotNull(result)
+        result.addOnCompleteListener {
+            assertNotNull(result)
+            assertFalse(result.isSuccessful)
+        }
     }
 
     @Test
@@ -39,24 +42,27 @@ class SignInActivityTest{
         result.addOnCompleteListener {
             assertTrue(it.isComplete)
             assertTrue(it.isSuccessful)
+            assertFalse(it.exception is IllegalArgumentException)
         }
     }
 
+    // Bellow is doubtful
     @Test
     fun whenInputsAreInvalid() {
         val email = "mail"
-        val pass = "invalid_password"
+        val pass = "ip"
 
         val result = signInAuth.signInWithEmailAndPassword(email, pass)
 
         result.addOnCompleteListener {
-            assertTrue(it.isComplete)
             assertFalse(it.isSuccessful)
+            assertTrue(it.exception is IllegalArgumentException)
         }
     }
 
     @Test
-    fun whenEmailIsNull(){
+    fun whenEmailIsEmpty(){
+
         val email = ""
         val pass = "invalid_password"
 
